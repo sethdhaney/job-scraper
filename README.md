@@ -24,4 +24,4 @@ The script `scheduler.sh`, which actually doesn't schedule anything, activates t
 
 I have scheduled `scheduler.sh` to run by editing the `crontab` and adding 
 
-`0 8 * * * /path/to/file/job-scraper/  scheduler.sh`
+`0 8 * * * /path/to/repo/job-scraper/  scheduler.sh`

@@ -23,6 +23,17 @@ class JobDigestEmailer():
     Summarizes new job listings and emails a digest.
     '''
     def __init__(self, recipient_email, sender_email, sender_password, previous_jobs_file=DEFAULT_LISTINGS_FN):
+        '''
+        Initializes the emailer.
+        recipient_email: str
+            email to send the digest to
+        sender_email: str
+            email to send the digest from
+        sender_password: str
+            password for the sender email
+        previous_jobs_file: str
+            file path to previous jobs csv
+        '''
         self.recipient_email = recipient_email
         self.sender_email = sender_email
         self.sender_password = sender_password

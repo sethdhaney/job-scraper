@@ -44,6 +44,13 @@ class JobScraper():
     Parses jobs given a job board url. 
     '''
     def __init__(self, board_url=DEFAULT_URL, previous_jobs_df=None):
+        '''
+        initializes the scraper
+        board_url: str
+            url of the job board to scrape
+        previous_jobs_df: pd.DataFrame
+            dataframe of previous jobs to filter out
+        '''
         self.board_url = board_url
         self.previous_jobs_df = previous_jobs_df
         return
@@ -67,6 +74,13 @@ class JobScraper():
         return new_job_df, exceptions_df
     
     def _scrape_all_pages(self, base_url):
+        '''
+        Scrapes all pages of the job board.
+        base_url: str
+            url of the job board to scrape
+        Returns:
+            list of job urls
+        '''
         page = 1
         job_urls = []
 
@@ -115,6 +129,11 @@ class JobScraper():
     def _extract_job_df(self, job_urls):
         '''
         Extracts job details for each job URL.
+        job_urls: list of str
+            list of job URLs to parse
+        Returns:    
+            pd.DataFrame of job details
+            pd.DataFrame of exceptions
         '''
         jobs_data, exceptions = [], []
         print(f"Fetching job dataframe...")
@@ -194,12 +213,16 @@ class JobScraper():
 
 
 def fetch_page(url, delay=1.0):
+    '''Gets a web page and returns processed soup'''
     time.sleep(delay)  # <-- delay BEFORE the request
     response = requests.get(url, headers=HEADERS)
     response.raise_for_status()
     return BeautifulSoup(response.text, "html.parser")
 
 def html_job_to_text(html: str, wrap_width: int = 88) -> str:
+    '''Creates a human readable version of an html job description and 
+    removes tags like <p> or <li> etc.
+    '''
     soup = BeautifulSoup(html, "html.parser")
 
     lines = []
