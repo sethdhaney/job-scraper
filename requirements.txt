@@ -1,0 +1,8 @@
+requests
+beautifulsoup4
+pandas
+scikit-learn
+tqdm
+emailutils
+#torch
+#sentence-transformers
